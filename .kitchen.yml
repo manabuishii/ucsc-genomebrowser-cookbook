@@ -1,0 +1,46 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+  chef_omnibus_install_options: ' -d /tmp/vagrant-cache/vagrant_omnibus'
+
+
+platforms:
+  #- name: ubuntu-12.04
+  - name: ubuntu-14.04
+    driver:
+      vagrantfile_erb: Vagrantfile.erb
+      synced_folders:
+        #- ['.', '/home/vagrant/my-project']
+        - ['./result', '/tmp/result']
+    run_list:
+      - role[ubuntu1404]
+      #- recipe[apache2::mod_authz_host]
+      #- recipe[apache2::mod_access_compat]
+    attributes:
+      #apt:
+      #  compile_time_update: true
+      build-essential:
+        compile_time: true
+      ubuntu:
+        mirror_site_url: "http://ftp.jaist.ac.jp/pub/Linux/ubuntu/"
+        version: "14.04"
+        need_deb_src: false
+        need_update: true
+
+suites:
+  - name: default
+    run_list:
+      - recipe[ucsc-genomebrowser-cookbook::change-apt]
+      #- recipe[selinux::permissive]
+      - recipe[build-essential]
+      - recipe[apache2]
+      - recipe[ucsc-genomebrowser-cookbook]
+    attributes:
+      tz: "Asia/Tokyo"
+      #build-essential:
+      #  compile_time: true
+busser:
+  sudo: false

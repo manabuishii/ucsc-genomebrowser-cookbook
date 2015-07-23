@@ -17,6 +17,7 @@ platforms:
         - ['./result', '/tmp/result']
     run_list:
       - role[ubuntu1404]
+      - recipe[ucsc-genomebrowser-cookbook::mysql-server-setup]
       #- recipe[apache2::mod_authz_host]
       #- recipe[apache2::mod_access_compat]
     attributes:

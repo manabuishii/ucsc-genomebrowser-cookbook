@@ -1,11 +1,5 @@
 require 'spec_helper'
 
-RSpec.configure do |c|
-  c.output_stream = File.open('/tmp/result/serverspec-result.xml', 'w')
-  c.formatter = 'RspecJunitFormatter'
-end
-
-
 describe package('apache2'), :if => os[:family] == 'ubuntu' do
   it { should be_installed }
 end

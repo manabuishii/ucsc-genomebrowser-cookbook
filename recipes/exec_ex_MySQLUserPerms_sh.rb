@@ -1,3 +1,10 @@
+bash "copy hg.conf" do
+  action :nothing
+  code   <<-EOH
+     cp /usr/local/src/kent/src/product/ex.hg.conf /usr/lib/cgi-bin/hg.conf
+  EOH
+end
+
 
 mysqlsetupscriptpath="/usr/local/src/kent/src/product/ex.MySQLUserPerms.sh"
 bash "execute ex.MySQLUserParams.sh" do
@@ -5,6 +12,7 @@ bash "execute ex.MySQLUserParams.sh" do
   code   <<-EOH
      #{mysqlsetupscriptpath}
   EOH
+  notifies :run, "bash[copy hg.conf]", :immediately
 end
 
 
@@ -19,5 +27,4 @@ ruby_block "setup user and password for mysql" do
     rc.write_file
   end
   action :run
-  notifies :run, "bash[execute ex.MySQLUserParams.sh]", :immediately
 end

@@ -1,9 +1,12 @@
 #
+jksrcurl=node[:ucscGenomeBrowser][:jksrc][:url]
+jksrcchecksum=node[:ucscGenomeBrowser][:jksrc][:checksum]
+
 remote_file "#{Chef::Config['file_cache_path']}/jksrc.zip" do
-  source "http://hgdownload.cse.ucsc.edu/admin/jksrc.zip"
+  source "#{jksrcurl}"
   mode   0644
   retries 3
-  checksum "3f370e13dcf176aed243b998f8b3aa3e634b112625408e440ba085ce683e1fb4"
+  checksum "#{jksrcchecksum}"
   not_if "test -f #{Chef::Config['file_cache_path']}/jksrc.zip"
 end
 #

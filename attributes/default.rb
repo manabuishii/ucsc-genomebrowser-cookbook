@@ -1,4 +1,4 @@
 default[:ucscGenomeBrowser][:jksrc][:url]="http://hgdownload.cse.ucsc.edu/admin/jksrc.zip"
-# 2016-09-01
-default[:ucscGenomeBrowser][:jksrc][:checksum]="573480616988a2a6661604c1027d8c56127e70a6fe242e08ba681fe54c0f9249"
+# 2016-09-15
+default[:ucscGenomeBrowser][:jksrc][:checksum]="760972f8f8b6f5a2ac62c1a563a9235b3844c040757d8c51d793962224afa239"
 
